@@ -1,8 +1,8 @@
 # MARK: - Homebrew Cask Formula (Step 20.1)
 
 cask "agentsboard" do
-  version "0.6.0"
-  sha256 "45ff4022e668e5ace484c2fbe972fc3632085b83ad5f2010d849f4d3fc35cd3a"
+  version "0.6.2"
+  sha256 "b1d981fc7532c8221c8d823e43688950f6f692ff5089eef92536f83a09aae2dd"
 
   url "https://github.com/pjcau/AgentsBoard/releases/download/v#{version}/AgentsBoard-#{version}.dmg"
   name "AgentsBoard"
@@ -12,6 +12,21 @@ cask "agentsboard" do
   depends_on macos: ">= :sonoma"
 
   app "AgentsBoard.app"
+
+  postflight do
+    # Remove quarantine flag so macOS doesn't block the unsigned app
+    system_command "/usr/bin/xattr",
+                   args: ["-cr", "#{appdir}/AgentsBoard.app"],
+                   sudo: false
+  end
+
+  caveats <<~EOS
+    AgentsBoard is not signed with a Developer ID certificate.
+    If macOS blocks the app on first launch:
+      1. Go to System Settings > Privacy & Security
+      2. Click "Open Anyway" next to the AgentsBoard message
+    Or run: xattr -cr /Applications/AgentsBoard.app
+  EOS
 
   zap trash: [
     "~/Library/Application Support/AgentsBoard",
