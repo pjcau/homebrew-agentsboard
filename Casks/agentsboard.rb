@@ -1,10 +1,10 @@
 # MARK: - Homebrew Cask Formula (Step 20.1)
 
 cask "agentsboard" do
-  version "0.6.2"
-  sha256 "b1d981fc7532c8221c8d823e43688950f6f692ff5089eef92536f83a09aae2dd"
+  version "0.8.0"
+  sha256 "7cfd4d85bf9bdeef70c2bedec8fb836845f435c5738e4a53a3b9164b94f771eb"
 
-  url "https://github.com/pjcau/AgentsBoard/releases/download/v#{version}/AgentsBoard-#{version}.dmg"
+  url "https://github.com/pjcau/AgentsBoard/releases/download/v#{version}/AgentsBoard-#{version}-macos.zip"
   name "AgentsBoard"
   desc "Fleet management dashboard for AI coding agents"
   homepage "https://github.com/pjcau/AgentsBoard"
